@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список банков</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/mainStyle.css">
+    <link rel="stylesheet" href="/static/css/listOfBanks.css">
+</head>
+<body class="text-center">
+<div th:replace="fragments/navbar :: mynavbar"></div>
+
+<div th:if="${message}" class="alert alert-danger alert-dismissible fade show text-center mw-50" role="alert">
+    <span th:text="${message}"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<h1 class="m-2">Список банков</h1>
+
+<div class="banksTable">
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col" colspan="4">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bank : ${banksList}">
+            <td th:text="${bank.name}"></td>
+            <td><a th:href="@{/bank/listOfCreditSpecificBank/{id}(id=${bank.id})}" class="btn btn-primary btn-block">Список кредитов</a></td>
+            <td><a th:href="@{/bank/getUsersListForBank/{id}(id=${bank.id})}" class="btn btn-primary btn-block">Список пользователей</a></td>
+            <td><a th:href="@{/bank/editBank/{id}(id=${bank.id})}" class="btn btn-primary btn-block">Изменить</a></td>
+            <td>
+                <form method="post" th:action="@{/bank/deleteBank/{id}(id=${bank.id})}">
+                    <button type="submit" class="btn btn-primary btn-block" value="Удалить"
+                            data-toggle="tooltip" data-placement="left" data-html="true"
+                            title="<b>Внимание!!! При удалении банка, так-же будут удалены все его кредиты и кредитные предложения!!!</b>">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>

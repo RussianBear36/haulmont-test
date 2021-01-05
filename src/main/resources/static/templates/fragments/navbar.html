@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9cf882; height: 7%;" th:fragment="mynavbar">
+    <a class="navbar-brand" href="/" style="font-size: 25px;">ОформитьКредит.РФ</a>
+    <div class="collapse navbar-collapse p-4" id="navbarNavAltMarkup" style="font-size: 20px;">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/user/listOfUsers">Список пользователей</a>
+            <a class="nav-item nav-link" href="/user/createUser">Создать пользователя</a>
+            <a class="nav-item nav-link" href="/bank/listOfBanks">Список банков</a>
+            <a class="nav-item nav-link" href="/bank/createBank">Создать банк</a>
+            <a class="nav-item nav-link" href="/credit/listOfCredits">Список кредитов</a>
+            <a class="nav-item nav-link" href="/credit/createCredit">Создать кредит</a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
